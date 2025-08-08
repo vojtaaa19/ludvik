@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Řeznictví u Dvořáků - Prémiové Drůbežství | Velké Pavlovice</title>
+    <meta name="description" content="Exkluzivní čerstvé kuřecí a krůtí maso z vlastní porcovny. Prémiové drůbežství Ludvík Dvořák ve Velkých Pavlovicích - tradice, kvalita a mistrovství.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-dark: #1A1A1A;
+            --primary-cream: #FDF6E3;
+            --accent-amber: #F59E0B;
+            --accent-red: #B91C1C;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --surface-white: #FFFFFF;
+            --surface-light: #F9FAFB;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F59E0B 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #374151 100%);
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 12px;
+            --border-radius-large: 24px;
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--primary-cream);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+
+        .logo-icon svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: white;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(5deg) scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.025em;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: var(--primary-gold);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition-smooth);
+        }
+
+        .nav button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: var(--transition-smooth);
+            transform: translateX(-50%);
+        }
+
+        .nav button:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav button:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition-fast);
+        }
+
+        .menu-toggle:hover {
+            background: var(--surface-light);
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            background: var(--surface-white);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .mobile-nav.open {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .mobile-nav button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            padding: 1rem;
+            transition: var(--transition-fast);
+            border-radius: 8px;
+            margin: 0.25rem 0;
+        }
+
+        .mobile-nav button:hover {
+            color: var(--primary-gold);
+            background: var(--surface-light);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: var(--gradient-dark);
+            color: white;
+            padding: 8rem 0 6rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1618174663454-4a409d5e4de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(212, 175, 55, 0.1) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--primary-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section.white {
+            background: var(--surface-white);
+        }
+
+        .section.light {
+            background: var(--surface-light);
+        }
+
+        .section.dark {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .section.gold {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .section.dark .section-badge {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .section.dark .section-title,
+        .section.gold .section-title {
+            color: white;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section.dark .section-subtitle,
+        .section.gold .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-divider {
+            width: 4rem;
+            height: 0.25rem;
+            background: var(--primary-gold);
+            margin: 2rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-images {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-large);
+            transition: var(--transition-smooth);
+        }
+
+        .about-image:nth-child(1) {
+            transform: translateY(-2rem);
+        }
+
+        .about-image:nth-child(2) {
+            transform: translateY(2rem);
+        }
+
+        .about-images:hover .about-image {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            padding-left: 2rem;
+        }
+
+        .about-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .feature-icon svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: white;
+        }
+
+        .feature-content h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--surface-light);
+            border-radius: var(--border-radius-large);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--surface-white);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .service-icon {
+            width: 4rem;
+            height: 4rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+
+        .service-icon svg {
+            width: 2rem;
+            height: 2rem;
+            fill: white;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .service-feature::before {
+            content: '✓';
+            color: var(--primary-gold);
+            font-weight: bold;
+            width: 1rem;
+            height: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            font-size: 0.75rem;
+        }
+
+        /* Opening Hours */
+        .hours-container {
+            max-width: 600px;
+            margin: 4rem auto 0;
+        }
+
+        .hours-card {
+            background: var(--surface-white);
+            padding: 3rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hours-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .hours-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hours-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .hours-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition-fast);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .hours-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+            margin: 0 -1.5rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .hours-day {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .hours-time {
+            font-weight: 600;
+            color: var(--primary-gold);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hours-time.closed {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        .hours-time.closed::before {
+            content: '●';
+            color: var(--accent-red);
+            font-size: 0.75rem;
+        }
+
+        .hours-time:not(.closed)::before {
+            content: '●';
+            color: var(--primary-gold);
+            font-size: 0.75rem;
+        }
+
+        .hours-note {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--surface-light);
+            border-radius: var(--border-radius);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-top: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: transparent;
+            border-radius: var(--border-radius);
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-icon svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: white;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-details h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .contact-value {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-action {
+            color: var(--primary-gold);
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .contact-action:hover {
+            color: var(--accent-amber);
+            text-decoration: underline;
+        }
+
+        .quick-contact {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius-large);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .quick-contact h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .quick-contact p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 0 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .footer-icon svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: white;
+        }
+
+        .footer-logo h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-info {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .footer-contact a:hover {
+            color: white;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 1px;
+            background: rgba(212, 175, 55, 0.3);
+            margin: 2rem auto;
+        }
+
+        .footer-copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-large);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            transform: translateX(120%);
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notification.show {
+            display: flex;
+            transform: translateX(0);
+            animation: notificationSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .notification-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 0.25rem;
+        }
+
+        .notification-text {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @keyframes notificationSlideIn {
+            from {
+                transform: translateX(120%) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .hero-cta {
+                flex-direction: row;
+            }
+
+            .contact-buttons {
+                flex-direction: row;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .about-grid {
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 4rem;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-content {
+                padding-left: 0;
+            }
+
+            .about-images {
+                order: -1;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-card {
+                min-height: auto;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-copyright {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .footer-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .notification {
+                top: 1rem;
+                right: 1rem;
+                left: 1rem;
+                transform: translateY(-120%);
+            }
+
+            .notification.show {
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth scrolling and reduced motion */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="scrollToSection('home')">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8.5 13.5l2.5 3 6-8"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Řeznictví u Dvořáků</h1>
+                        <p>Prémiové Drůbežství</p>
+                    </div>
+                </div>
+                
+                <nav class="nav">
+                    <button onclick="scrollToSection('home')">Domů</button>
+                    <button onclick="scrollToSection('about')">O nás</button>
+                    <button onclick="scrollToSection('speciality')">Speciality</button>
+                    <button onclick="scrollToSection('hours')">Otevírací doba</button>
+                    <button onclick="scrollToSection('contact')">Kontakt</button>
+                </nav>
+                
+                <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <nav class="mobile-nav" id="mobileNav">
+                <button onclick="scrollToSection('home')">Domů</button>
+                <button onclick="scrollToSection('about')">O nás</button>
+                <button onclick="scrollToSection('speciality')">Speciality</button>
+                <button onclick="scrollToSection('hours')">Otevírací doba</button>
+                <button onclick="scrollToSection('contact')">Kontakt</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Řeznictví od roku 2014</div>
+                <h2>Řeznictví u Dvořáků</h2>
+                <p class="hero-subtitle">Exkluzivní čerstvé kuřecí a krůtí maso z vlastní porcovny. Prémiová kvalita, tradiční řemeslo, moderní přístup.</p>
+                <div class="hero-cta">
+                    <button class="btn" onclick="scrollToSection('contact')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        Kontaktujte nás
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('about')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7"/>
+                            <path d="M7 7h10v10"/>
+                        </svg>
+                        Náš příběh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section light animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Náš příběh</div>
+                <h3 class="section-title">Tradice & Mistrovství</h3>
+                <p class="section-subtitle">Více než 15 let specializace na prémiové drůbežství. Každý kus masa je výsledkem poctivé práce a lásky k řemeslu.</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-images">
+                    <img src="https://images.unsplash.com/photo-1638439430466-b2bb7fdc1d67?q=80&w=465&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" 
+                         alt="Čerstvé kuřecí maso" class="about-image">
+                    <img src="https://images.unsplash.com/photo-1559851183-71da68b38173?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" 
+                         alt="Krůtí speciality" class="about-image">
+                </div>
+                <div class="about-content">
+                    <h4>Exkluzivní Drůbežství</h4>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h5>Výhradně České Chovy</h5>
+                                <p>Každé kuře a krůta pochází z pečlivě vybraných českých farem s nejvyššími standardy welfare.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h5>Vlastní Porcovna</h5>
+                                <p>Moderní technologie kombinovaná s tradičními postupy garantuje maximální čerstvost a chuť.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h5>Kvalitní Kontrola</h5>
+                                <p>Každý kus masa prochází přísnou kontrolou kvality před tím, než se dostane k zákazníkovi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Let Tradice</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">České Chovy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24h</span>
+                            <span class="stat-label">Čerstvost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="speciality" class="section white animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Naše Výrobky</div>
+                <h3 class="section-title">Prémiové Speciality</h3>
+                <p class="section-subtitle">Specializujeme se výhradně na drůbežství s důrazem na nejvyšší kvalitu, čerstvost a tradiční zpracování.</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                    </div>
+                    <h4>Čerstvé Kuřecí Maso</h4>
+                    <p>Denně zpracovávané kuřecí maso z vlastní porcovny. Kompletní sortiment od celých kuřat po porcované díly.</p>
+                    <div class="service-features">
+                        <div class="service-feature">Celá kuřata</div>
+                        <div class="service-feature">Kuřecí prsa a stehna</div>
+                        <div class="service-feature">Kuřecí křidélka</div>
+                        <div class="service-feature">Mleté kuřecí maso</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h4>Prémiové Krůtí Maso</h4>
+                    <p>Exkluzivní krůtí speciality pro náročné zákazníky. Vyšší obsah bílkovin, nižší obsah tuku.</p>
+                    <div class="service-features">
+                        <div class="service-feature">Krůtí prsa</div>
+                        <div class="service-feature">Krůtí stehna</div>
+                        <div class="service-feature">Krůtí rolády</div>
+                        <div class="service-feature">Speciality na objednávku</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h4>Garantovaná Kvalita</h4>
+                    <p>Veškeré drůbežství pochází výhradně z českých farem s nejvyššími standardy kvality a welfare zvířat.</p>
+                    <div class="service-features">
+                        <div class="service-feature">České farmy</div>
+                        <div class="service-feature">Bez antibiotik</div>
+                        <div class="service-feature">Kontrola kvality</div>
+                        <div class="service-feature">Sledovatelnost původu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opening Hours Section -->
+    <section id="hours" class="section light animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Navštivte nás</div>
+                <h3 class="section-title">Otevírací Doba</h3>
+                <p class="section-subtitle">Naše řeznictví je otevřené pět dní v týdnu. Doporučujeme ranní hodiny pro nejlepší výběr čerstvého masa.</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="hours-container">
+                <div class="hours-card">
+                    <div class="hours-header">
+                        <h4 class="hours-title">Pravidelné Hodiny</h4>
+                        <p class="hours-subtitle">Aktualizováno denně</p>
+                    </div>
+                    
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span class="hours-day">Pondělí</span>
+                            <span class="hours-time closed">ZAVŘENO</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="hours-day">Úterý</span>
+                            <span class="hours-time">8:00 - 17:30</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="hours-day">Středa</span>
+                            <span class="hours-time">8:00 - 17:30</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="hours-day">Čtvrtek</span>
+                            <span class="hours-time">8:00 - 17:30</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="hours-day">Pátek</span>
+                            <span class="hours-time">8:00 - 17:30</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="hours-day">Sobota</span>
+                            <span class="hours-time">8:00 - 11:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="hours-day">Neděle</span>
+                            <span class="hours-time closed">ZAVŘENO</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hours-note">
+                        <strong>Tip:</strong> Pro nejlepší výběr doporučujeme navštívit naše řeznictví v ranních hodinách. V případě větších objednávek volejte předem.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section dark animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Kontakt</div>
+                <h3 class="section-title">Spojte se s námi</h3>
+                <p class="section-subtitle">Rádi zodpovíme všechny vaše dotazy a pomůžeme s výběrem nejlepšího masa pro vaše potřeby.</p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Naše Adresa</h5>
+                            <div class="contact-value">Velké Pavlovice</div>
+                            <button class="contact-action" onclick="openMap()">Zobrazit na mapě</button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Telefon</h5>
+                            <div class="contact-value">777 654 124</div>
+                            <div class="contact-actions">
+                                <a href="tel:777654124" class="contact-action">Zavolat</a>
+                                <button class="contact-action" onclick="copyToClipboard('777654124', 'Telefonní číslo zkopírováno')">Zkopírovat</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Email</h5>
+                            <div class="contact-value">ludva.3@seznam.cz</div>
+                            <div class="contact-actions">
+                                <a href="mailto:ludva.3@seznam.cz" class="contact-action">Napsat email</a>
+                                <button class="contact-action" onclick="copyToClipboard('ludva.3@seznam.cz', 'Email zkopírován')">Zkopírovat</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-contact">
+                    <h4>Rychlé Objednávky</h4>
+                    <p>Potřebujete čerstvé drůbežství? Volejte nebo pište! Větší objednávky připravíme na požádání.</p>
+                    <div class="contact-buttons">
+                        <button class="btn" onclick="copyToClipboard('777654124', 'Telefonní číslo zkopírováno')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            Zavolat Nyní
+                        </button>
+                        <a href="mailto:ludva.3@seznam.cz" class="btn btn-outline">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            Napsat Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8.5 13.5l2.5 3 6-8"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </div>
+                    <h5>Řeznictví u Dvořáků</h5>
+                </div>
+                
+                <p class="footer-info">Prémiové drůbežství z vlastní porcovny • Velké Pavlovice • Tradice od roku 2014</p>
+                
+                <div class="footer-contact">
+                    <a href="tel:777654124">📞 777 654 124</a>
+                    <a href="mailto:ludva.3@seznam.cz">✉️ ludva.3@seznam.cz</a>
+                    <a href="#" onclick="openMap(); return false;">📍 Velké Pavlovice</a>
+                </div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-copyright">
+                    <span id="copyright-year">© 2024 Řeznictví u Dvořáků</span>
+                    <span>•</span>
+                    <span>Všechna práva vyhrazena</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m9 12 2 2 4-4"/>
+            </svg>
+        </div>
+        <span class="notification-text"></span>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('open');
+        }
+
+        // Smooth scrolling to sections with offset for fixed header
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerHeight = 100;
+                const elementPosition = element.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                const mobileNav = document.getElementById('mobileNav');
+                mobileNav.classList.remove('open');
+            }
+        }
+
+        // Copy to clipboard function
+        async function copyToClipboard(text, message) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    showNotification(message);
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed";
+                    textArea.style.top = "0";
+                    textArea.style.left = "0";
+                    textArea.style.opacity = "0";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showNotification(message);
+                }
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                showNotification('Chyba při kopírování', true);
+            }
+        }
+
+        // Show notification with custom message
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.querySelector('.notification-text');
+            
+            notificationText.textContent = message;
+            notification.classList.add('show');
+            
+            if (isError) {
+                notification.style.background = 'var(--accent-red)';
+            } else {
+                notification.style.background = 'var(--gradient-primary)';
+            }
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Open map
+        function openMap() {
+            window.open('https://maps.app.goo.gl/2KaAeHtkAh8RW7b2A', '_blank');
+        }
+
+        // Header scroll effect
+        function handleScroll() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach((element) => {
+                observer.observe(element);
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const header = document.querySelector('.header');
+            
+            if (!header.contains(event.target)) {
+                mobileNav.classList.remove('open');
+            }
+        });
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current year in footer
+            const year = new Date().getFullYear();
+            const copyrightElement = document.getElementById('copyright-year');
+            if (copyrightElement) {
+                copyrightElement.textContent = `© ${year} Řeznictví u Dvořáků`;
+            }
+
+            // Add scroll listeners
+            window.addEventListener('scroll', handleScroll);
+            
+            // Initialize scroll animations
+            animateOnScroll();
+            
+            // Preload images for better performance
+            const images = [
+                'https://images.unsplash.com/photo-1618174663454-4a409d5e4de1',
+                'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f'
+            ];
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src + '?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+            });
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const mobileNav = document.getElementById('mobileNav');
+                mobileNav.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
