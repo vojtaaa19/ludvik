@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Řeznictví u Dvořáků - Prémiové Drůbežství | Velké Pavlovice</title>
-    <meta name="description" content="Exkluzivní čerstvé kuřecí a krůtí maso z vlastní porcovny. Prémiové drůbežství Ludvík Dvořák ve Velkých Pavlovicích - tradice, kvalita a mistrovství.">
+    <meta name="description"
+        content="Exkluzivní čerstvé kuřecí a krůtí maso z vlastní porcovny. Prémiové drůbežství Ludvík Dvořák ve Velkých Pavlovicích - tradice, kvalita a mistrovství.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-gold: #D4AF37;
@@ -208,7 +212,7 @@
             font-weight: 500;
             cursor: pointer;
             text-align: left;
-            padding: 1rem;
+            padding: 1.25rem 1.5rem;
             transition: var(--transition-fast);
             border-radius: 8px;
             margin: 0.25rem 0;
@@ -224,6 +228,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -372,6 +377,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -939,6 +945,21 @@
             transform: translateY(-2px);
         }
 
+        .map-container {
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-large);
+            margin-top: 4rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            height: 500px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* Footer */
         .footer {
             background: var(--primary-dark);
@@ -1077,11 +1098,63 @@
             font-size: 0.95rem;
         }
 
+        /* Akční popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-large);
+            max-width: 500px;
+            position: relative;
+            box-shadow: var(--shadow-large);
+            text-align: center;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .popup-content h3 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
         @keyframes notificationSlideIn {
             from {
                 transform: translateX(120%) scale(0.8);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0) scale(1);
                 opacity: 1;
@@ -1136,18 +1209,20 @@
 
             .hero {
                 padding: 6rem 0 4rem;
+                min-height: auto;
             }
 
             .hero h2 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
             }
 
             .hero-subtitle {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
             }
 
             .section {
-                padding: 4rem 0;
+                padding: 3rem 0;
             }
 
             .section-title {
@@ -1166,6 +1241,13 @@
 
             .about-images {
                 order: -1;
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 220px;
+                margin-bottom: 1rem;
+                transform: none !important;
             }
 
             .services-grid {
@@ -1201,6 +1283,24 @@
 
             .notification.show {
                 transform: translateY(0);
+            }
+
+            /* Kontaktní položky na mobilu */
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-icon {
+                margin-bottom: 1rem;
+            }
+
+            /* Tlačítka na mobilu */
+            .btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+                margin-bottom: 0.5rem;
             }
         }
 
@@ -1247,16 +1347,16 @@
         }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
     <header class="header" id="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo" onclick="scrollToSection('home')">
                     <div class="logo-icon">
                         <svg viewBox="0 0 24 24">
-                            <path d="M8.5 13.5l2.5 3 6-8"/>
-                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8.5 13.5l2.5 3 6-8" />
+                            <circle cx="12" cy="12" r="10" />
                         </svg>
                     </div>
                     <div class="logo-text">
@@ -1264,7 +1364,7 @@
                         <p>Prémiové Drůbežství</p>
                     </div>
                 </div>
-                
+
                 <nav class="nav">
                     <button onclick="scrollToSection('home')">Domů</button>
                     <button onclick="scrollToSection('about')">O nás</button>
@@ -1272,7 +1372,7 @@
                     <button onclick="scrollToSection('hours')">Otevírací doba</button>
                     <button onclick="scrollToSection('contact')">Kontakt</button>
                 </nav>
-                
+
                 <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -1281,7 +1381,7 @@
                     </svg>
                 </button>
             </div>
-            
+
             <nav class="mobile-nav" id="mobileNav">
                 <button onclick="scrollToSection('home')">Domů</button>
                 <button onclick="scrollToSection('about')">O nás</button>
@@ -1292,24 +1392,27 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">Řeznictví od roku 2014</div>
                 <h2>Řeznictví u Dvořáků</h2>
-                <p class="hero-subtitle">Exkluzivní čerstvé kuřecí a krůtí maso z vlastní porcovny. Prémiová kvalita, tradiční řemeslo, moderní přístup.</p>
+                <p class="hero-subtitle">Exkluzivní čerstvé kuřecí a krůtí maso z vlastní porcovny. Prémiová kvalita,
+                    tradiční řemeslo, moderní přístup.</p>
                 <div class="hero-cta">
                     <button class="btn" onclick="scrollToSection('contact')">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                         </svg>
                         Kontaktujte nás
                     </button>
                     <button class="btn btn-secondary" onclick="scrollToSection('about')">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7"/>
-                            <path d="M7 7h10v10"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M7 17L17 7" />
+                            <path d="M7 7h10v10" />
                         </svg>
                         Náš příběh
                     </button>
@@ -1318,22 +1421,22 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="section light animate-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">Náš příběh</div>
                 <h3 class="section-title">Tradice & Mistrovství</h3>
-                <p class="section-subtitle">Více než 15 let specializace na prémiové drůbežství. Každý kus masa je výsledkem poctivé práce a lásky k řemeslu.</p>
+                <p class="section-subtitle">Více než 15 let specializace na prémiové drůbežství. Každý kus masa je
+                    výsledkem poctivé práce a lásky k řemeslu.</p>
                 <div class="section-divider"></div>
             </div>
-            
+
             <div class="about-grid">
                 <div class="about-images">
-                    <img src="https://images.unsplash.com/photo-1638439430466-b2bb7fdc1d67?q=80&w=465&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" 
-                         alt="Čerstvé kuřecí maso" class="about-image">
-                    <img src="https://images.unsplash.com/photo-1559851183-71da68b38173?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" 
-                         alt="Krůtí speciality" class="about-image">
+                    <img src="https://images.unsplash.com/photo-1638439430466-b2bb7fdc1d67?q=80&w=465&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA=="
+                        alt="Čerstvé kuřecí maso" class="about-image">
+                    <img src="https://images.unsplash.com/photo-1559851183-71da68b38173?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA=="
+                        alt="Krůtí speciality" class="about-image">
                 </div>
                 <div class="about-content">
                     <h4>Exkluzivní Drůbežství</h4>
@@ -1341,39 +1444,43 @@
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                                 </svg>
                             </div>
                             <div class="feature-content">
                                 <h5>Výhradně České Chovy</h5>
-                                <p>Každé kuře a krůta pochází z pečlivě vybraných českých farem s nejvyššími standardy welfare.</p>
+                                <p>Každé kuře a krůta pochází z pečlivě vybraných českých farem s nejvyššími standardy
+                                    welfare.</p>
                             </div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                 </svg>
                             </div>
                             <div class="feature-content">
                                 <h5>Vlastní Porcovna</h5>
-                                <p>Moderní technologie kombinovaná s tradičními postupy garantuje maximální čerstvost a chuť.</p>
+                                <p>Moderní technologie kombinovaná s tradičními postupy garantuje maximální čerstvost a
+                                    chuť.</p>
                             </div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 12l2 2 4-4"/>
-                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9 12l2 2 4-4" />
+                                    <circle cx="12" cy="12" r="10" />
                                 </svg>
                             </div>
                             <div class="feature-content">
                                 <h5>Kvalitní Kontrola</h5>
-                                <p>Každý kus masa prochází přísnou kontrolou kvality před tím, než se dostane k zákazníkovi.</p>
+                                <p>Každý kus masa prochází přísnou kontrolou kvality před tím, než se dostane k
+                                    zákazníkovi.</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="about-stats">
                         <div class="stat-item">
                             <span class="stat-number">15+</span>
@@ -1393,27 +1500,28 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="speciality" class="section white animate-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">Naše Výrobky</div>
                 <h3 class="section-title">Prémiové Speciality</h3>
-                <p class="section-subtitle">Specializujeme se výhradně na drůbežství s důrazem na nejvyšší kvalitu, čerstvost a tradiční zpracování.</p>
+                <p class="section-subtitle">Specializujeme se výhradně na drůbežství s důrazem na nejvyšší kvalitu,
+                    čerstvost a tradiční zpracování.</p>
                 <div class="section-divider"></div>
             </div>
-            
+
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                            <line x1="3" y1="6" x2="21" y2="6"/>
-                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
                         </svg>
                     </div>
                     <h4>Čerstvé Kuřecí Maso</h4>
-                    <p>Denně zpracovávané kuřecí maso z vlastní porcovny. Kompletní sortiment od celých kuřat po porcované díly.</p>
+                    <p>Denně zpracovávané kuřecí maso z vlastní porcovny. Kompletní sortiment od celých kuřat po
+                        porcované díly.</p>
                     <div class="service-features">
                         <div class="service-feature">Celá kuřata</div>
                         <div class="service-feature">Kuřecí prsa a stehna</div>
@@ -1421,11 +1529,12 @@
                         <div class="service-feature">Mleté kuřecí maso</div>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                     </div>
                     <h4>Prémiové Krůtí Maso</h4>
@@ -1437,15 +1546,16 @@
                         <div class="service-feature">Speciality na objednávku</div>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                         </svg>
                     </div>
                     <h4>Garantovaná Kvalita</h4>
-                    <p>Veškeré drůbežství pochází výhradně z českých farem s nejvyššími standardy kvality a welfare zvířat.</p>
+                    <p>Veškeré drůbežství pochází výhradně z českých farem s nejvyššími standardy kvality a welfare
+                        zvířat.</p>
                     <div class="service-features">
                         <div class="service-feature">České farmy</div>
                         <div class="service-feature">Bez antibiotik</div>
@@ -1457,23 +1567,23 @@
         </div>
     </section>
 
-    <!-- Opening Hours Section -->
     <section id="hours" class="section light animate-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">Navštivte nás</div>
                 <h3 class="section-title">Otevírací Doba</h3>
-                <p class="section-subtitle">Naše řeznictví je otevřené pět dní v týdnu. Doporučujeme ranní hodiny pro nejlepší výběr čerstvého masa.</p>
+                <p class="section-subtitle">Naše řeznictví je otevřené pět dní v týdnu. Doporučujeme ranní hodiny pro
+                    nejlepší výběr čerstvého masa.</p>
                 <div class="section-divider"></div>
             </div>
-            
+
             <div class="hours-container">
                 <div class="hours-card">
                     <div class="hours-header">
                         <h4 class="hours-title">Pravidelné Hodiny</h4>
                         <p class="hours-subtitle">Aktualizováno denně</p>
                     </div>
-                    
+
                     <div class="hours-list">
                         <div class="hours-item">
                             <span class="hours-day">Pondělí</span>
@@ -1481,68 +1591,69 @@
                         </div>
                         <div class="hours-item">
                             <span class="hours-day">Úterý</span>
-                            <span class="hours-time">8:00 - 17:30</span>
+                            <span class="hours-time">8:00 - 12:00, 13:00 - 17:00</span>
                         </div>
                         <div class="hours-item">
                             <span class="hours-day">Středa</span>
-                            <span class="hours-time">8:00 - 17:30</span>
+                            <span class="hours-time">8:00 - 12:00, 13:00 - 17:00</span>
                         </div>
                         <div class="hours-item">
                             <span class="hours-day">Čtvrtek</span>
-                            <span class="hours-time">8:00 - 17:30</span>
+                            <span class="hours-time">8:00 - 12:00, 13:00 - 17:00</span>
                         </div>
                         <div class="hours-item">
                             <span class="hours-day">Pátek</span>
-                            <span class="hours-time">8:00 - 17:30</span>
+                            <span class="hours-time">8:00 - 12:00, 13:00 - 17:00</span>
                         </div>
                         <div class="hours-item">
                             <span class="hours-day">Sobota</span>
-                            <span class="hours-time">8:00 - 11:00</span>
+                            <span class="hours-time">7:00 - 10:30</span>
                         </div>
                         <div class="hours-item">
                             <span class="hours-day">Neděle</span>
                             <span class="hours-time closed">ZAVŘENO</span>
                         </div>
                     </div>
-                    
+
                     <div class="hours-note">
-                        <strong>Tip:</strong> Pro nejlepší výběr doporučujeme navštívit naše řeznictví v ranních hodinách. V případě větších objednávek volejte předem.
+                        <strong>Tip:</strong> Pro nejlepší výběr doporučujeme navštívit naše řeznictví v ranních
+                        hodinách. V případě větších objednávek volejte předem.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="section dark animate-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">Kontakt</div>
                 <h3 class="section-title">Spojte se s námi</h3>
-                <p class="section-subtitle">Rádi zodpovíme všechny vaše dotazy a pomůžeme s výběrem nejlepšího masa pro vaše potřeby.</p>
+                <p class="section-subtitle">Rádi zodpovíme všechny vaše dotazy a pomůžeme s výběrem nejlepšího masa pro
+                    vaše potřeby.</p>
                 <div class="section-divider"></div>
             </div>
-            
+
             <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                                <circle cx="12" cy="10" r="3"/>
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                <circle cx="12" cy="10" r="3" />
                             </svg>
                         </div>
                         <div class="contact-details">
                             <h5>Naše Adresa</h5>
-                            <div class="contact-value">Velké Pavlovice</div>
-                            <button class="contact-action" onclick="openMap()">Zobrazit na mapě</button>
+                            <div class="contact-value">Hlavní 168, 691 06 Velké Pavlovice</div>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
                         </div>
                         <div class="contact-details">
@@ -1550,76 +1661,93 @@
                             <div class="contact-value">777 654 124</div>
                             <div class="contact-actions">
                                 <a href="tel:777654124" class="contact-action">Zavolat</a>
-                                <button class="contact-action" onclick="copyToClipboard('777654124', 'Telefonní číslo zkopírováno')">Zkopírovat</button>
+                                <button class="contact-action"
+                                    onclick="copyToClipboard('777654124', 'Telefonní číslo zkopírováno')">Zkopírovat</button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
                             </svg>
                         </div>
                         <div class="contact-details">
                             <h5>Email</h5>
                             <div class="contact-value">ludva.3@seznam.cz</div>
                             <div class="contact-actions">
-                                <a href="mailto:ludva.3@seznam.cz" class="contact-action">Napsat email</a>
-                                <button class="contact-action" onclick="copyToClipboard('ludva.3@seznam.cz', 'Email zkopírován')">Zkopírovat</button>
+                                <button class="contact-action"
+                                    onclick="copyToClipboard('ludva.3@seznam.cz', 'Email zkopírován')">Zkopírovat
+                                    email</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="quick-contact">
                     <h4>Rychlé Objednávky</h4>
                     <p>Potřebujete čerstvé drůbežství? Volejte nebo pište! Větší objednávky připravíme na požádání.</p>
                     <div class="contact-buttons">
-                        <button class="btn" onclick="copyToClipboard('777654124', 'Telefonní číslo zkopírováno')">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        <a href="tel:777654124" class="btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
                             Zavolat Nyní
-                        </button>
-                        <a href="mailto:ludva.3@seznam.cz" class="btn btn-outline">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
+                        </a>
+                        <button class="btn btn-outline"
+                            onclick="copyToClipboard('ludva.3@seznam.cz', 'Email zkopírován')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
                             </svg>
                             Napsat Email
-                        </a>
+                        </button>
                     </div>
                 </div>
+            </div>
+
+            <div class="map-container animate-on-scroll">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.6837046399514!2d16.81514007619133!3d48.90236479761115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712d11ebf52c8f3%3A0xbf225ca380157e3!2sProdejna%20Masa!5e0!3m2!1scs!2scz!4v1754751697661!5m2!1scs!2scz"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <div class="footer-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8.5 13.5l2.5 3 6-8"/>
-                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8.5 13.5l2.5 3 6-8" />
+                            <circle cx="12" cy="12" r="10" />
                         </svg>
                     </div>
                     <h5>Řeznictví u Dvořáků</h5>
                 </div>
-                
-                <p class="footer-info">Prémiové drůbežství z vlastní porcovny • Velké Pavlovice • Tradice od roku 2014</p>
-                
+
+                <p class="footer-info">Prémiové drůbežství z vlastní porcovny • Hlavní 168, 691 06 Velké Pavlovice •
+                    Tradice od roku 2014
+                </p>
+
                 <div class="footer-contact">
                     <a href="tel:777654124">📞 777 654 124</a>
-                    <a href="mailto:ludva.3@seznam.cz">✉️ ludva.3@seznam.cz</a>
-                    <a href="#" onclick="openMap(); return false;">📍 Velké Pavlovice</a>
+                    <button class="footer-contact-action"
+                        onclick="copyToClipboard('ludva.3@seznam.cz', 'Email zkopírován')">✉️
+                        ludva.3@seznam.cz</button>
+                    <a href="https://maps.google.com/?cid=860792029234419683&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl"
+                        target="_blank">📍 Zobrazit na mapě</a>
                 </div>
-                
+
                 <div class="footer-divider"></div>
-                
+
                 <div class="footer-copyright">
                     <span id="copyright-year">© 2024 Řeznictví u Dvořáků</span>
                     <span>•</span>
@@ -1629,15 +1757,15 @@
         </div>
     </footer>
 
-    <!-- Notification -->
     <div class="notification" id="notification">
         <div class="notification-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m9 12 2 2 4-4"/>
+                <path d="m9 12 2 2 4-4" />
             </svg>
         </div>
         <span class="notification-text"></span>
     </div>
+
 
     <script>
         // Mobile menu toggle
@@ -1652,12 +1780,12 @@
             if (element) {
                 const headerHeight = 100;
                 const elementPosition = element.offsetTop - headerHeight;
-                
+
                 window.scrollTo({
                     top: elementPosition,
                     behavior: 'smooth'
                 });
-                
+
                 // Close mobile menu if open
                 const mobileNav = document.getElementById('mobileNav');
                 mobileNav.classList.remove('open');
@@ -1669,9 +1797,8 @@
             try {
                 if (navigator.clipboard && window.isSecureContext) {
                     await navigator.clipboard.writeText(text);
-                    showNotification(message);
                 } else {
-                    // Fallback for older browsers
+                    // Fallback pro starší prohlížeče
                     const textArea = document.createElement("textarea");
                     textArea.value = text;
                     textArea.style.position = "fixed";
@@ -1683,36 +1810,32 @@
                     textArea.select();
                     document.execCommand('copy');
                     document.body.removeChild(textArea);
-                    showNotification(message);
                 }
+                showNotification(message);
             } catch (err) {
                 console.error('Failed to copy:', err);
                 showNotification('Chyba při kopírování', true);
             }
+            return true;
         }
 
         // Show notification with custom message
         function showNotification(message, isError = false) {
             const notification = document.getElementById('notification');
             const notificationText = document.querySelector('.notification-text');
-            
+
             notificationText.textContent = message;
             notification.classList.add('show');
-            
+
             if (isError) {
                 notification.style.background = 'var(--accent-red)';
             } else {
                 notification.style.background = 'var(--gradient-primary)';
             }
-            
+
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 4000);
-        }
-
-        // Open map
-        function openMap() {
-            window.open('https://maps.app.goo.gl/2KaAeHtkAh8RW7b2A', '_blank');
         }
 
         // Header scroll effect
@@ -1744,19 +1867,33 @@
             });
         }
 
+        // Popup functions
+        function showPopup() {
+            // Zobrazí popup pouze pokud uživatel ještě neviděl dnešní akci
+            const lastSeen = localStorage.getItem('popupLastSeen');
+            if (!lastSeen || new Date().toDateString() !== lastSeen) {
+                document.getElementById('popup').style.display = 'flex';
+                localStorage.setItem('popupLastSeen', new Date().toDateString());
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
         // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             const mobileNav = document.getElementById('mobileNav');
             const menuToggle = document.querySelector('.menu-toggle');
             const header = document.querySelector('.header');
-            
+
             if (!header.contains(event.target)) {
                 mobileNav.classList.remove('open');
             }
         });
 
         // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Update current year in footer
             const year = new Date().getFullYear();
             const copyrightElement = document.getElementById('copyright-year');
@@ -1766,29 +1903,35 @@
 
             // Add scroll listeners
             window.addEventListener('scroll', handleScroll);
-            
+
             // Initialize scroll animations
             animateOnScroll();
-            
+
             // Preload images for better performance
             const images = [
                 'https://images.unsplash.com/photo-1618174663454-4a409d5e4de1',
-                'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f'
+                'https://images.unsplash.com/photo-1559851183-71da68b38173',
+                'https://images.unsplash.com/photo-1638439430466-b2bb7fdc1d67'
             ];
-            
+
             images.forEach(src => {
                 const img = new Image();
-                img.src = src + '?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+                img.src = src + '?q=80&w=400&auto=format&fit=crop';
             });
+
+            // Show popup after delay
+            setTimeout(showPopup, 3000);
         });
 
         // Keyboard navigation support
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 const mobileNav = document.getElementById('mobileNav');
                 mobileNav.classList.remove('open');
+                closePopup();
             }
         });
     </script>
 </body>
+
 </html>
